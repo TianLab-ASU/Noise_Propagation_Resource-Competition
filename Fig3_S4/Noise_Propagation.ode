@@ -1,0 +1,25 @@
+p km01=0.4, km1=8,  kp1=15, dm1=1, dp1=1, I1=1, Jm1=40, Jp1=20
+p km02=1, km2=25, kp2=30, dm2=1, dp2=1, I2=1, Jm2=40, Jp2=2
+p n=3, Kg=17 
+p a=1
+
+R1=I1
+R2=I2*Kg^n/(p1^n+Kg^n)
+
+# Transcriptional Resource Competition
+PFm=1+R1/Jm1+R2/Jm2
+# Translational Resource Competition
+PFp=1+m1/Jp1+m2*a/Jp2
+
+# mRNA gfp
+m1'=km01+km1*R1/PFm-dm1*m1
+
+# protein GFP
+p1'=kp1*m1/PFp-dp1*p1
+
+# mRNA rfp
+m2'=km02+km2*R2/PFm-dm2*m2
+
+# protein RFP
+p2'=kp2*m2/PFp-dp2*p2
+ 
